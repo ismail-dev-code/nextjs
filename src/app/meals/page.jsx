@@ -1,9 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
+import MealsSearchInput from "./components/mealsSearchInput";
 
 export default function MealsPage() {
-  const [meals, setMeals] = useState([]);
-  const [search, setSearch] = useState("");
+
 
   const fetchMeals = async (query = "") => {
     try {
@@ -11,16 +11,12 @@ export default function MealsPage() {
         `https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`
       );
       const data = await res.json();
-      setMeals(data.meals || []);
+      // setMeals(data.meals || []);
     } catch (error) {
       console.error("Error fetching meals:", error);
     }
   };
 
-  // Fetch meals on initial render
-  useEffect(() => {
-    fetchMeals();
-  }, []);
 
   // Fetch meals on button click
   const handleSearch = () => {
@@ -31,13 +27,7 @@ export default function MealsPage() {
     <div className="max-w-4xl mx-auto px-4 py-8">
       <h1 className="text-2xl font-bold mb-4">Search Meals</h1>
       <div className="flex gap-2 mb-6">
-        <input
-          type="text"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="Enter meal name..."
-          className="border px-3 py-2 rounded w-full"
-        />
+  
         <button
           onClick={handleSearch}
           className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
@@ -45,7 +35,7 @@ export default function MealsPage() {
           Search
         </button>
       </div>
-
+     <MealsSearchInput/>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {meals.map((meal) => (
           <div
