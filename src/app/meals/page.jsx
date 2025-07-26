@@ -11,7 +11,7 @@ export default function MealsPage() {
         `https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`
       );
       const data = await res.json();
-      // setMeals(data.meals || []);
+      setMeals(data.meals || []);
     } catch (error) {
       console.error("Error fetching meals:", error);
     }
