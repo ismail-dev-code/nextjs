@@ -1,22 +1,28 @@
-import { usePathname } from "next/navigation";
-import { useRouter } from "next/router";
-import React from "react";
+"use client";
+
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function MealsSearchInput() {
-  //   const [meals, setMeals] = useState([]);
-  const [search, setSearch] = useState("");
   const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
 
-  useEffect(() => {
-    const searchQuery = { search };
-    const urlQueryParam = new URLSearchParams(searchQuery);
-    const url = `${pathname}?${urlQueryParam}`;
-    router.push(url);
-  }, [search]);
+  const [search, setSearch] = useState(searchParams.get("search") || "");
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const params = new URLSearchParams(searchParams);
+    if (search) {
+      params.set("search", search);
+    } else {
+      params.delete("search");
+    }
+    router.push(`${pathname}?${params.toString()}`);
+  };
 
   return (
-    <div>
+    <form onSubmit={handleSearch} className="flex gap-2">
       <input
         type="text"
         value={search}
@@ -24,6 +30,12 @@ export default function MealsSearchInput() {
         placeholder="Enter meal name..."
         className="border px-3 py-2 rounded w-full"
       />
-    </div>
+      <button
+        type="submit"
+        className="bg-blue-500 cursor-pointer text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+      >
+        Search
+      </button>
+    </form>
   );
 }

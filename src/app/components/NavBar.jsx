@@ -8,10 +8,10 @@ export default function NavBar() {
 
   if (!pathname.includes("dashboard")) {
     return (
-      <div>
-        <nav className="bg-gray-500 flex justify-center items-center">
+      <div className="sticky top-0 z-50">
+        <nav className="bg-gray-500 flex justify-center items-center shadow-md">
           <h1 className="text-green-200 ml-3 font-bold cursor-pointer">
-            NestJS
+            NextJS
           </h1>
           <ul className="flex w-1/2 gap-3.5 mx-auto py-3 bg-gray-400 justify-center">
             <Link href={"/"}>
@@ -20,13 +20,12 @@ export default function NavBar() {
             <Link href={"/posts"}>
               <li className="cursor-pointer">Posts</li>
             </Link>
-           
           </ul>
           <h2 className="text-green-400 mr-3 cursor-pointer">Log In</h2>
         </nav>
       </div>
     );
   } else {
-    return <></>;
+    return null;
   }
 }

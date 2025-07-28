@@ -1,10 +1,14 @@
 import Link from "next/link";
-
+import style from './post.module.css';
 // Fetch posts from JSONPlaceholder API
 export const getPosts = async () => {
   const res = await fetch("https://jsonplaceholder.typicode.com/posts");
   const data = await res.json();
   return data;
+};
+export const metadata = {
+  title: "All Post | Learning NextJS",
+  description: "Loading JSONPlaceholder post using server Component",
 };
 
 export default async function Posts() {
@@ -19,7 +23,7 @@ export default async function Posts() {
             key={post.id}
             className="bg-white p-5 rounded-lg shadow-md border hover:shadow-lg transition duration-300"
           >
-            <h2 className="text-lg font-semibold mb-2">{post.title}</h2>
+            <h2 className={`text-lg font-semibold mb-2 ${style['post-title']}`}>{post.title}</h2>
             <p className="text-gray-700 mb-4 line-clamp-3">{post.body}</p>
             <Link
               href={`/posts/${post.id}`}
