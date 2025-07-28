@@ -5,6 +5,16 @@ export const getSinglePost = async (postId) => {
   if (!res.ok) throw new Error("Failed to fetch post");
   return res.json();
 };
+export async function generateMetadata({ params }) {
+  const id = params.id;
+  const post = await getSinglePost(id);
+
+  return {
+    title: post.title,
+    description: post.body.slice(0, 150), 
+  };
+}
+
 
 export default async function SinglePost({ params }) {
   const { id } = params;

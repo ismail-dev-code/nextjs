@@ -4,6 +4,11 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import MealsSearchInput from "./components/MealsSearchInput";
 
+export const metadata = {
+  title: "All Meals",
+  description: "Meals loaded from MealDB API",
+};
+
 export default function MealsPage() {
   const [meals, setMeals] = useState([]);
   const searchParams = useSearchParams();

@@ -20,6 +20,9 @@ export default function NavBar() {
             <Link href={"/posts"}>
               <li className="cursor-pointer">Posts</li>
             </Link>
+            <Link href={"/meals"}>
+              <li className="cursor-pointer">Meals</li>
+            </Link>
           </ul>
           <h2 className="text-green-400 mr-3 cursor-pointer">Log In</h2>
         </nav>

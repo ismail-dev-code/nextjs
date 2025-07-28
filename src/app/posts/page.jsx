@@ -7,7 +7,7 @@ export const getPosts = async () => {
   return data;
 };
 export const metadata = {
-  title: "All Post | Learning NextJS",
+  title: "All Post",
   description: "Loading JSONPlaceholder post using server Component",
 };
 
